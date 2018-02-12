@@ -1,0 +1,31 @@
+---
+galaxy_info:
+  author: Ona Engineering
+  description: Sets up monitoring on a server
+  min_ansible_version: 2.0
+  license: Apache2
+  platforms:
+    - name: Ubuntu
+      versions:
+        - trusty
+        - xenial
+  categories:
+    - monitoring
+
+dependencies:
+ - role: hostname
+   become: yes
+   server_hostname: "{{ server_monitoring_hostname }}"
+   hostname_from_ec2_Name_tag: "{{ server_monitoring_hostname_from_ec2_Name_tag }}"
+   when: server_monitoring_set_hostname == true
+
+ - role: collectd
+   become: yes
+   collectd_scripts: "{{ server_monitoring_collectd_scripts }}"
+   collectd_graphite_server_ip: "{{ server_monitoring_graphite_server_ip }}"
+   collectd_graphite_server_port: "{{ server_monitoring_graphite_server_port }}"
+   collectd_graphite_server_protocol: "{{ server_monitoring_graphite_server_protocol }}"
+   collectd_server_mode: true
+   collectd_server_hostname: "{{ server_monitoring_hostname }}"
+   collectd_server_type: "{{ server_monitoring_server_type }}"
+   collectd_server_owner: "{{ server_monitoring_owner }}"

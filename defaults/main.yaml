@@ -1,0 +1,10 @@
+---
+server_monitoring_collectd_scripts: ["graphite", "cpu", "disk", "load", "memory"]
+server_monitoring_graphite_server_ip: "127.0.0.1"
+server_monitoring_graphite_server_port: "2003"
+server_monitoring_graphite_server_protocol: "tcp"
+server_monitoring_hostname: "{{ ansible_hostname }}"
+server_monitoring_owner: "ona"
+server_monitoring_server_type: "generic"
+server_monitoring_set_hostname: true
+server_monitoring_hostname_from_ec2_Name_tag: true
